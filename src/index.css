@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Weather-themed Design System */
+    --background: 210 100% 97%;
+    --foreground: 220 40% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 40% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 40% 10%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 200 100% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 220 20% 50%;
+
+    --accent: 280 60% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 30% 90%;
+    --input: 220 30% 90%;
+    --ring: 210 100% 50%;
+
+    --radius: 1rem;
+
+    /* Weather-specific colors */
+    --sunny: 45 100% 60%;
+    --cloudy: 200 20% 70%;
+    --rainy: 210 80% 45%;
+    --stormy: 240 40% 30%;
+    --snowy: 200 30% 85%;
+    --clear-night: 240 50% 20%;
+    
+    /* Gradients */
+    --gradient-sunny: linear-gradient(135deg, hsl(45 100% 60%) 0%, hsl(35 100% 55%) 100%);
+    --gradient-cloudy: linear-gradient(135deg, hsl(200 30% 75%) 0%, hsl(210 40% 65%) 100%);
+    --gradient-rainy: linear-gradient(135deg, hsl(210 70% 50%) 0%, hsl(220 80% 40%) 100%);
+    --gradient-stormy: linear-gradient(135deg, hsl(240 40% 35%) 0%, hsl(250 50% 25%) 100%);
+    --gradient-snowy: linear-gradient(135deg, hsl(200 40% 90%) 0%, hsl(210 50% 80%) 100%);
+    --gradient-clear: linear-gradient(135deg, hsl(200 100% 50%) 0%, hsl(220 100% 60%) 100%);
+    
+    /* Glass effects */
+    --glass-bg: hsla(0, 0%, 100%, 0.15);
+    --glass-border: hsla(0, 0%, 100%, 0.25);
+    --glass-shadow: 0 8px 32px 0 hsla(210, 80%, 50%, 0.15);
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .dark {
+    --background: 220 40% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 35% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 35% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 100% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 200 100% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 30% 18%;
+    --muted-foreground: 210 20% 65%;
+
+    --accent: 280 60% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 30% 20%;
+    --input: 220 30% 20%;
+    --ring: 210 100% 55%;
+    
+    --glass-bg: hsla(220, 35%, 15%, 0.4);
+    --glass-border: hsla(0, 0%, 100%, 0.1);
+    --glass-shadow: 0 8px 32px 0 hsla(0, 0%, 0%, 0.4);
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .glass:hover {
+    background: hsla(0, 0%, 100%, 0.2);
+    border: 1px solid hsla(0, 0%, 100%, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px 0 hsla(210, 80%, 50%, 0.25);
+  }
+  
+  .glass-strong {
+    background: hsla(0, 0%, 100%, 0.25);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid hsla(0, 0%, 100%, 0.35);
+    box-shadow: 0 12px 40px 0 hsla(210, 80%, 50%, 0.2);
+  }
+  
+  .text-shadow-soft {
+    text-shadow: 0 2px 10px hsla(0, 0%, 0%, 0.1);
+  }
+  
+  .text-shadow-strong {
+    text-shadow: 0 2px 20px hsla(0, 0%, 0%, 0.3);
+  }
+  
+  .hover-scale {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateY(-10%);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(110vh);
+      opacity: 0.3;
+    }
+  }
+
+  .animate-fall {
+    animation: fall linear infinite;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  html {
+    transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  * {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
